@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - .:/app
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: srebot
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    command: celery -A tasks worker --loglevel=info
+    env_file: .env
+    depends_on:
+      - redis
+      - postgres
+
+  celery-beat:
+    build: .
+    command: celery -A tasks beat --loglevel=info
+    env_file: .env
+    depends_on:
+      - redis
+      - postgres
+
+volumes:
+  postgres_data:
+
