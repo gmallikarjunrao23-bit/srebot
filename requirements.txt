@@ -1,0 +1,36 @@
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Telegram
+aiogram==3.2.0
+
+# Database
+sqlalchemy[asyncio]==2.0.23
+asyncpg==0.29.0
+alembic==1.12.1
+
+# Redis
+redis==5.0.1
+
+# Celery
+celery==5.3.4
+
+# HTTP Client
+aiohttp==3.9.1
+aiohttp-socks==0.8.4
+
+# DNS
+dnspython==2.4.2
+
+# Configuration
+pydantic==2.5.2
+pydantic-settings==2.1.0
+
+# Utilities
+python-dotenv==1.0.0
+orjson==3.9.10
+
+# Monitoring (self)
+psutil==5.9.6
+
